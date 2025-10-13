@@ -51,13 +51,14 @@ void readMoisture() {
 
   // Alert Call
   alert(MOISTURE_ALERT, MOISTURE_ALERT_THRESHOLD, MOISTURE_THROWAWAY_THRESHOLD, moistureReading);
-
 }
 
 // Sets the alert pin input based on threshold input and reading value input
 void alert(uint8_t alertOutput, float alertThreshold, float ignoreThreshold, float reading){
   // If the reading is within the alert threshold, set the alert
-  bool isAlert = (reading > alertThreshold) && (reading > ignoreThreshold);
+  bool isAlert = (reading > alertThreshold) && (reading < ignoreThreshold);
+
+  digitalWrite(MOISTURE_ALERT, isAlert);
 
   Serial.printf("Alert: %s\n", isAlert ? "true" : "false");
 }
