@@ -6,7 +6,7 @@
 
 // Constants
 const float MOISTURE_THROWAWAY_THRESHOLD = 10.0; // threshold for noise values to ignore
-const float MOISTURE_ALERT_THRESHOLD = 1000; // threshold for moisture alert
+const float MOISTURE_ALERT_THRESHOLD = 900; // threshold for moisture alert
 
 // Function Declarations:
 void readMoisture();
@@ -56,7 +56,7 @@ void readMoisture() {
 // Sets the alert pin input based on threshold input and reading value input
 void alert(uint8_t alertOutput, float alertThreshold, float ignoreThreshold, float reading){
   // If the reading is within the alert threshold, set the alert
-  bool isAlert = (reading > alertThreshold) && (reading < ignoreThreshold);
+  bool isAlert = (reading > alertThreshold) && (reading > ignoreThreshold);
 
   digitalWrite(MOISTURE_ALERT, isAlert);
 
